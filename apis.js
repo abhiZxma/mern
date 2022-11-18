@@ -11,13 +11,14 @@ router.get('/', (req, res) => {
 router.post('/userregistration', async (req, res) => {
     try {
         let validationError = []
-        let body = req.body
+        console.log("req.body",req.body)
+        let body = JSON.parse(req.body)
         body.phone ? true : validationError.push({ "field": "phone", "error": "mandatory parameter missing" })
         if (validationError.length == 0) {
             let otp = util.otpGenerate()
             let guid = uuid.v4()
             let insertData = await db.collection("user").insertOne({
-                "phone": req.body.phone,
+                "phone": body.phone,
                 "_id": guid,
                 "otp": otp
             })
@@ -47,7 +48,7 @@ router.post('/userregistration', async (req, res) => {
 router.post('/verifyotp', async (req, res) => {
     try {
         let validationError = []
-        let body = req.body
+        let body = JSON.parse(req.body)
         body.phone ? true : validationError.push({ "field": "phone", "error": "mandatory parameter missing" })
         body.otp ? true : validationError.push({ "field": "otp", "error": "mandatory parameter missing" })
         if (validationError.length == 0) {
@@ -86,7 +87,7 @@ router.post('/verifyotp', async (req, res) => {
 router.post('/createImageRecord', async (req, res) => {
     try {
         let validationError = []
-        let body = req.body
+        let body = JSON.parse(req.body)
         body.image_title ? true : validationError.push({ "field": "image_title", "error": "mandatory parameter missing" })
         body.image_desc ? true : validationError.push({ "field": "image_desc", "error": "mandatory parameter missing" })
         body.image ? true : validationError.push({ "field": "image", "error": "mandatory parameter missing" })
@@ -130,7 +131,7 @@ router.post('/createImageRecord', async (req, res) => {
 router.post('/updateImageRecord', async (req, res) => {
     try {
         let validationError = []
-        let body = req.body
+        let body = JSON.parse(req.body)
         body.id ? true : validationError.push({ "field": "id", "error": "mandatory parameter missing" })
         if (validationError.length == 0) {
             let update_to_be = {}
@@ -200,7 +201,7 @@ router.get('/getAllrecords', async (req, res) => {
 router.delete('/deleterecord', async (req, res) => {
     try {
         let validationError = []
-        let body = req.body
+        let body = JSON.parse(req.body)
         body.id ? true : validationError.push({ "field": "id", "error": "mandatory parameter missing" })
         if (validationError.length == 0) {
             let deleteData = await db.collection("images").findOneAndDelete({ "_id": body.id })

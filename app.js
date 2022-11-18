@@ -4,6 +4,7 @@ require("dotenv").config();
 const router=require('./apis')
 const app=express()
 app.use(express.json())
+app.use(express.text())
 app.use(router)
 global.mongo_client = {};
 try {
