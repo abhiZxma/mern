@@ -199,7 +199,7 @@ router.get('/getAllrecords', async (req, res) => {
     }
 
 })
-router.delete('/deleterecord', async (req, res) => {
+router.post('/deleterecord', async (req, res) => {
     try {
         let validationError = []
         let body = JSON.parse(req.body)
