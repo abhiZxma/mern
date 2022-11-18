@@ -14,7 +14,7 @@
   "author": "abhishek tiwari",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "cors": "*",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^4.12.0",
