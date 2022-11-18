@@ -6,6 +6,7 @@ const app=express()
 app.use(express.json())
 app.use(express.text())
 app.use(router)
+app.use(cors());
 global.mongo_client = {};
 try {
   const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@cluster0.fn89qwz.mongodb.net/${process.env.MONGODB_DB_NAME}?retryWrites=true&w=majority`

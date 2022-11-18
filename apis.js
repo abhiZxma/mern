@@ -52,6 +52,7 @@ router.post('/verifyotp', async (req, res) => {
         body.phone ? true : validationError.push({ "field": "phone", "error": "mandatory parameter missing" })
         body.otp ? true : validationError.push({ "field": "otp", "error": "mandatory parameter missing" })
         if (validationError.length == 0) {
+            console.log("body",body)
             let getData = await db.collection("user").find({ "phone": body.phone, "otp": body.otp }).toArray()
             if (getData.length > 0) {
                 res.status(200).json({ "success": true, "message": "otp verified" })
@@ -233,7 +234,7 @@ router.delete('/deleterecord', async (req, res) => {
 router.post('/uploadImage', util.upload.single('image'), async (req, res) => {
     try {
         res.status(200).json({
-            success: false,
+            success: true,
             "url":`${req.file.destination}/${req.file.filename}`,
             message: "file uploaded succesfully"
         })
