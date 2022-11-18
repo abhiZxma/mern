@@ -3,6 +3,7 @@ const { MongoClient,ObjectId } = require('mongodb');
 require("dotenv").config();
 const router=require('./apis')
 const app=express()
+var cors = require('cors')
 app.use(express.json())
 app.use(express.text())
 app.use(router)
