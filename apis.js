@@ -23,7 +23,7 @@ router.post('/userregistration', async (req, res) => {
                 "otp": otp
             })
             if (insertData.acknowledged) {
-                res.status(200).json({ "success": true, "id": insertData.insertedId })
+                res.status(200).json({ "success": true, "id": insertData.insertedId,"otp": otp })
             }
             else {
                 res.status(400).json({
